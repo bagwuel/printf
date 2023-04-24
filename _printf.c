@@ -59,6 +59,5 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(arg);
-	printf("ours: %d\n", count);
 	return (count);
 }
