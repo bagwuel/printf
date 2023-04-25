@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * print_hex - prints a number in base eight
+ * print_hex - prints a number in base sixteen
  * @n: number to be printed
  * @c: specifier
  *

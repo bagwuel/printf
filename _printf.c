@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 {
 	int i, num, count = 0;
 	unsigned int unum;
-	char specifiers[] ={'c', 's', '%', 'i', 'd', 'b', 'u', 'o', 'x', 'X', '\0'};
+	char specifiers[] ={'c', 's', '%', 'i', 'd', 'b', 'u', 'o', 'x', 'X', 'S', '\0'};
 	char c;
 	char *s;
 	va_list arg;
@@ -85,6 +85,12 @@ int _printf(const char *format, ...)
 			{
 				unum = va_arg(arg, unsigned int);
 				count += print_hex(unum, format[i + 1]);
+				i++;
+			}
+			else if (format[i + 1] == 'S')
+			{
+				s = va_arg(arg, char *);
+				count += print_str(s);
 				i++;
 			}
 		}
