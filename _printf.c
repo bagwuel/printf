@@ -13,7 +13,8 @@
 
 int _printf(const char *format, ...)
 {
-	int i, count = 0;
+	int i, num, count = 0;
+	char specifiers[] ={'c', 's', '%', 'i', 'd', '\0'};
 	char c;
 	char *s;
 	va_list arg;
@@ -31,7 +32,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			if (format[i + 1] != 'c' && format[i + 1] != 's')
+			if (!_strchr(specifiers, format[i + 1]))
 			{
 				_putchar('%');
 				count++;
@@ -54,6 +55,13 @@ int _printf(const char *format, ...)
 					count++;
 					i++;
 				}
+			}
+			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+			{
+				num = va_arg(arg, int);
+				print_number(num);
+				count++;
+				i++;
 			}
 		}
 		i++;
