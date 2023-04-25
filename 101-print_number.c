@@ -2,20 +2,34 @@
 
 /**
  * print_number - prints an integer.
- * @n: integer to be printed.
+ * @n: integer to be printed
+ *
+ * Return: number of char in number
  */
 
-void print_number(int n)
+int print_number(int n)
 {
-	unsigned int nb;
+	unsigned int num;
+	int i = 0;
 
+	if (n == 0)
+	{
+		_putchar('0');
+		i++;
+		return (i);
+	}
 	if (n < 0)
 	{
-		n *= -1;
 		_putchar('-');
+		i++;
+		num = n * -1;
 	}
-	nb = n;
-	if (nb / 10)
-		print_number(nb / 10);
-	_putchar(nb % 10 + 48);
+	else
+	{
+		num = n;
+	}
+	if (num / 10)
+		i += print_number(num / 10);
+	_putchar(num % 10 + 48);
+	return (i + 1);
 }
