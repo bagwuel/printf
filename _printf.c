@@ -14,7 +14,8 @@
 int _printf(const char *format, ...)
 {
 	int i, num, count = 0;
-	char specifiers[] ={'c', 's', '%', 'i', 'd', 'b', '\0'};
+	unsigned int unum;
+	char specifiers[] ={'c', 's', '%', 'i', 'd', 'b', 'u', 'o', 'x', 'X', '\0'};
 	char c;
 	char *s;
 	va_list arg;
@@ -66,6 +67,24 @@ int _printf(const char *format, ...)
 			{
 				num = va_arg(arg, int);
 				count += print_binary(num);
+				i++;
+			}
+			else if (format[i + 1] == 'u')
+			{
+				unum = va_arg(arg, unsigned int);
+				count += print_uint(unum);
+				i++;
+			}
+			else if (format[i + 1] == 'o')
+			{
+				unum = va_arg(arg, unsigned int);
+				count += print_octal(unum);
+				i++;
+			}
+			else if (format[i + 1] == 'x' || format[i + 1] == 'X')
+			{
+				unum = va_arg(arg, unsigned int);
+				count += print_hex(unum, format[i + 1]);
 				i++;
 			}
 		}
