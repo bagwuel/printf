@@ -14,7 +14,7 @@
 int _printf(const char *format, ...)
 {
 	int i, num, count = 0;
-	char specifiers[] ={'c', 's', '%', 'i', 'd', '\0'};
+	char specifiers[] ={'c', 's', '%', 'i', 'd', 'b', '\0'};
 	char c;
 	char *s;
 	va_list arg;
@@ -60,6 +60,12 @@ int _printf(const char *format, ...)
 			{
 				num = va_arg(arg, int);
 				count += print_number(num);
+				i++;
+			}
+			else if (format[i + 1] == 'b')
+			{
+				num = va_arg(arg, int);
+				count += print_binary(num);
 				i++;
 			}
 		}
